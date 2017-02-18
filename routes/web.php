@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [
+	'uses'=>'WebController@home',
+	'as'=>'home'
+	]);
+
+Route::get('sobrebotbychat', [
+	'uses'=>'WebController@about',
+	'as'=>'about'
+	]);
+
+Route::group(['prefix'=>'panel'],function(){
+	Route::get('login',['uses'=>'AuthController@login','as'=>'login']);
+	Route::get('logout',['uses'=>'AuthController@logout','as'=>'logout']);
 });
